@@ -1,0 +1,19 @@
+{
+  "name": "it122_js2",
+  "version": "1.0.0",
+  "description": "hw1 package.json file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmgarza94/it122_js2.git"
+  },
+  "author": "Josele Garza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmgarza94/it122_js2/issues"
+  },
+  "homepage": "https://github.com/jmgarza94/it122_js2#readme"
+}
