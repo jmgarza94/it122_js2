@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/jmgarza94/it122_js2/issues"
   },
-  "homepage": "https://github.com/jmgarza94/it122_js2#readme"
+  "homepage": "https://github.com/jmgarza94/it122_js2#readme",
+  "type": "module"
 }
