@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Detail Page</title>
+</head>
+<body>
+    <section class="details">
+    <h2 class="details-header">DETAILS</h2>
+    <% if (target) { %>
+        <h2 class="animal-detail"><%= name.charAt(0).toUpperCase() + name.slice(1) %> details</h2>
+        <li>Family: <%= target.type %></li>
+        <li>Breed: <%= target.breed %></li>
+        <li>Color: <%= target.color %></li>
+    <% } else {
+        document.location.href="/";
+    } %>
+    </section>
+    <div class="home-button"><a href="/">Back to home</a></div>
+</body>
+</html>

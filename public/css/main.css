@@ -1,0 +1,78 @@
+body {
+    background-color: lightblue;
+}
+
+.home-header {
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 15px;
+}
+
+.animals {
+    margin-left: 50px;
+    margin-top: 25px;
+    font-size: 1.75em;
+}
+
+.animal-list {
+    margin-left: 25px;
+}
+
+.animal-li {
+    list-style-type:decimal;
+    font-size: 1.25em;
+    margin-bottom: 10px;
+}
+
+.animal-li > a {
+    text-decoration: none;
+    padding: 5px;
+    color: blue;
+}
+
+.animal-li > a:hover {
+    font-size: 1.2em;
+    /* border: 1px solid grey; */
+    /* border-radius: 5px; */
+    text-decoration:overline
+}
+
+.details-header {
+    margin-left: 50px;
+    margin-top: 25px;
+    font-size: 1.85em;
+}
+
+.animal-detail {
+    margin-left: 75px;
+    font-size: 1.75em;
+}
+
+.details li {
+    margin-left: 75px;
+    list-style-type: none;
+    margin-bottom: 5px;
+    font-size: 1.25em;
+}
+
+.home-button {
+    margin-left: 75px;
+    margin-top: 50px;
+    
+}
+
+.home-button a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.25em;
+    border: 2px solid rgb(148, 148, 148);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(187, 187, 187);
+    color:blue;
+}
+
+.home-button a:hover {
+    background-color: rgb(202, 202, 202);
+}
