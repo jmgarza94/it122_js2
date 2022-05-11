@@ -14,7 +14,7 @@
     </h2>
 
     <ul class="animal-list">
-        <% data.forEach(function(data) { %>
+        <% animals.forEach(function(data) { %>
             <li class="animal-li"><a href="/detail?name=<%= data.name %>"> <%= data.name %></a></li>
         <% }); %>
     </ul>
