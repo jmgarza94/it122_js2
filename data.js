@@ -1,4 +1,6 @@
-  let animals = [
+"use strict"
+
+let animals = [
     {
       "name": "cat",
       "type": "mammal",
@@ -46,4 +48,23 @@ export const getItem = (value) => {
     console.log(item);
     return item["name"] == value;
   });
+};
+
+export const deleteItem = (name) => {
+  let currLength = animals.length;
+  animals = animals.filter((item) => {
+      return item.name !== name;
+  });
+  return {deleted: currLength !== animals.length, total: animals.length }; //compare arrays to see if item was successfully deleted
+};
+
+export const addItem = (newAnimal) => {
+  const currLength = animals.length;
+  
+  let found = getItem(newAnimal.title); //Check if the item is already in our array
+  if (!found) {
+      animals.push(newAnimal);
+  }
+  
+  return {added: currLength !== animals.length, total: animals.length }; //compare arrays to see if item was added
 };
