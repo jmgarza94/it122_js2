@@ -60,8 +60,7 @@ export const deleteItem = (name) => {
 
 export const addItem = (newAnimal) => {
   const currLength = animals.length;
-  
-  let found = getItem(newAnimal.title); //Check if the item is already in our array
+  let found = getItem(newAnimal.name); //Check if the item is already in our array
   if (!found) {
       animals.push(newAnimal);
   }
