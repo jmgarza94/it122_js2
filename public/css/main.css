@@ -39,9 +39,11 @@ body {
 }
 
 .details-header {
-    margin-left: 50px;
-    margin-top: 25px;
-    font-size: 1.85em;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 15px;
+    font-size: 2em;
 }
 
 .animal-detail {
