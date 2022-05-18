@@ -6,23 +6,25 @@ body {
     margin: 0 auto;
     text-align: center;
     text-decoration: underline;
-    margin-top: 15px;
+    margin-top: 50px !important;
+    font-size: 2.5em;
 }
 
 .animals {
-    margin-left: 50px;
-    margin-top: 25px;
-    font-size: 1.75em;
+    margin-left: 100px;
+    margin-top: 50px;
+    font-size: 2em;
 }
 
 .animal-list {
-    margin-left: 25px;
+    margin-left: 100px;
 }
 
 .animal-li {
     list-style-type:decimal;
-    font-size: 1.25em;
-    margin-bottom: 10px;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight:bold;
 }
 
 .animal-li > a {
@@ -42,32 +44,42 @@ body {
     margin: 0 auto;
     text-align: center;
     text-decoration: underline;
-    margin-top: 15px;
-    font-size: 2em;
+    margin-top: 50px !important;
+    font-size: 2.5em;
 }
 
 .animal-detail {
-    margin-left: 75px;
-    font-size: 1.75em;
+    margin-left: 100px;
+    margin-top: 75px;
+    font-size: 2em;
 }
 
 .details li {
-    margin-left: 75px;
-    list-style-type: none;
-    margin-bottom: 5px;
-    font-size: 1.25em;
+    list-style-type:decimal;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    /* font-weight:bold; */
+    margin-left: 150px;
+}
+
+.delete-header {
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 75px !important;
+    font-size: 3em;
 }
 
 .home-button {
-    margin-left: 75px;
-    margin-top: 50px;
+    margin-left: 100px;
+    margin-top: 75px;
     
 }
 
 .home-button a {
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.25em;
+    font-size: 1.35em;
     border: 2px solid rgb(148, 148, 148);
     padding: 5px;
     border-radius: 5px;
@@ -76,5 +88,27 @@ body {
 }
 
 .home-button a:hover {
+    background-color: rgb(202, 202, 202);
+}
+
+.home-button-delete {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 100px;
+    
+}
+
+.home-button-delete a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.75em;
+    border: 2px solid rgb(148, 148, 148);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(187, 187, 187);
+    color:blue;
+}
+
+.home-button-delete a:hover {
     background-color: rgb(202, 202, 202);
 }

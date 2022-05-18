@@ -1,7 +1,7 @@
 "use strict"
 
+import { name } from 'ejs';
 import express from 'express';
-// import * as data from './data.js';
 import { Animal } from "./models/Animal.js";
 
 const app = express();
@@ -13,9 +13,6 @@ app.use(express.json()); //Parse JSON bodies
 
 app.set("view engine", "ejs");
 
-// app.get('/', (req,res) => {
-//     res.render('home', {animals: data.getAll()});
-// });
 
 app.get('/', (req, res, next) => {
   Animal.find({}).lean()
@@ -32,15 +29,6 @@ app.get('/about', (req,res) => {
   res.send('My about page');
 });
 
-// app.get('/detail', (req,res) => {
-//   console.log(req.query)
-//   let target = data.getItem(req.query.name);
-//   res.render("details", {
-//       name: req.query.name, 
-//       target
-//       }
-//   );
-// });
 
 app.get('/detail', (req,res,next) => {
   // db query can use request parameters
@@ -51,11 +39,6 @@ app.get('/detail', (req,res,next) => {
       .catch(err => next(err));
 });
 
-// app.post('/detail', (req,res) => {
-//   console.log(req.body)
-//   let found = data.getItem(req.body.name);
-//   res.render("details", {name: req.body.name, target: found, animals: data.getAll()});
-// });
 
 app.post('/detail', (req,res,next) => {
   Animal.findOne({ name:req.body.name }).lean()
@@ -65,17 +48,12 @@ app.post('/detail', (req,res,next) => {
         .catch(err => next(err));
 });
 
-app.get('/delete', (req,res) => {
-  Animal.deleteOne({ name:req.query.name }, (err, result) => {
-      if (err) return next(err);
-      // let deleted = result.result.n !== 0; // n will be 0 if no docs deleted
-      Animal.count((err, total) => {
-          res.type('text/html');
-          res.render('delete', {name: req.query.name, deleted: result.result.n !== 0, total: total } );    
-      });
-  });
+app.get('/delete', (req,res,next) => {
+  Animal.deleteOne({ name:req.query.name }).then(() => {
+    res.render('delete');
+  })
+  .catch(err => next(err));
 });
-
 
 // 404 handler - default case
 app.use((req,res) => {
