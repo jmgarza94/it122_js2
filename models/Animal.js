@@ -11,7 +11,7 @@ mongoose.connect(connectionString, {
 });
 
 mongoose.connection.on('open', () => {
-    console.log('Mongoose connected.');
+    console.log('Mongoose connected to DB.');
   });
   
   
