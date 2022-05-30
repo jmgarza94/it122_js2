@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Detail Page</title>
+    <title>React Detail Page</title>
 
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -17,7 +17,7 @@
     <section class="details">
     <h1 class="details-header">DETAILS</h2>
     <% if (result) { %>
-        <h2 class="animal-detail"><%= result.name.charAt(0).toUpperCase() + result.name.slice(1) %> Details</h2>
+        <h2 class="animal-detail"><%= result.name.charAt(0).toUpperCase() + result.name.slice(1)%> Details</h2>
         <li>Family:   <%= result.type.charAt(0).toUpperCase() + result.type.slice(1) %></li>
         <li>Breed:   <%= result.breed.charAt(0).toUpperCase() + result.breed.slice(1) %></li>
         <li>Color:   <%= result.color.charAt(0).toUpperCase() + result.color.slice(1) %></li>
@@ -26,6 +26,6 @@
         document.location.href="/";
     } %>
     </section>
-    <div class="home-button"><a href="/">Back to home</a></div>
+    <div class="home-button"><a href="/react">React Home</a></div>
 </body>
 </html>

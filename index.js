@@ -17,6 +17,7 @@ app.use("/api", cors()); // set Access-Control-Allow-Origin header for api route
 //set the view engine to ejs
 app.set("view engine", "ejs");
 
+// HOME ROUTE FOR BASIC APP
 app.get("/", (req, res, next) => {
   Animal.find({})
     .lean()
@@ -27,12 +28,35 @@ app.get("/", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-// send plain text response
+// HOME ROUTE FOR REACT
+app.get("/react", (req, res, next) => {
+  Animal.find({})
+    .lean()
+    .then((animals) => {
+      // respond to browser only after db query completes
+      res.render("home_react", {items: JSON.stringify(animals)});
+    })
+    .catch((err) => next(err));
+});
+
+
+// DETAIL ROUTE FOR REACT
+app.get('/detail_react', (req,res,next) => {
+  Animal.findOne({ name:req.query.name }).lean()
+      .then((animal) => {
+          res.render("detail_react", {result: animal});
+      })
+      .catch(err => next(err));
+});
+
+
+// ABOUT ROUTE FOR BASIC APP
 app.get("/about", (req, res) => {
   res.type("text/html");
   res.render("about");
 });
 
+// ANIMAL DETAIL ROUTE FOR BASIC APP
 app.get("/detail", (req, res, next) => {
   // db query can use request parameters
   Animal.findOne({ name: req.query.name })
@@ -52,6 +76,7 @@ app.post("/detail", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+// DELETE ANIMAL ROUTE FOR BASIC APP
 app.get("/delete", (req, res, next) => {
   Animal.deleteOne({ name: req.query.name })
     .then(() => {

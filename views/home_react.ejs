@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <title>React App Home</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <h1 class="home-header">REACT HOME PAGE</h1>
+    <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3>
+    <h2 class="animals">Animals:</h2>
+
+    <div id="root"></div>
+  
+    <script type="text/babel">
+
+      const animals = <%- items %>;
+
+      const animalDetail = (event) => {
+        window.location.href = "/detail_react?name=" + event.target.innerText.toLowerCase();
+        // need to use [.toLowerCase()] at the end of event target to keep the path lowercase
+        console.log(event.target.innerText.toLowerCase());
+        console.log(event.target.innerText);
+      }
+
+      // ANIMAL LIST AND DETAILS AS TWO SEPARATE COMPONENTS
+
+      const Animals = (props) => {
+        const listItems = props.data.map((item) =>
+        <li className="animal-li" key={item._id} id={item._id} onClick={props.clickHandler}>
+            <a>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</a>
+        </li>);
+        return <ul className="animal-list">{listItems}</ul>
+      }
+          
+          ReactDOM.render(
+          <div><Animals data={animals} clickHandler={animalDetail} /></div>,
+          document.getElementById('root')
+          );
+    </script>
+  </body>
+</html>
