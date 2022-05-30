@@ -40,16 +40,6 @@ app.get("/react", (req, res, next) => {
 });
 
 
-// DETAIL ROUTE FOR REACT
-app.get('/detail_react', (req,res,next) => {
-  Animal.findOne({ name:req.query.name }).lean()
-      .then((animal) => {
-          res.render("detail_react", {result: animal});
-      })
-      .catch(err => next(err));
-});
-
-
 // ABOUT ROUTE FOR BASIC APP
 app.get("/about", (req, res) => {
   res.type("text/html");

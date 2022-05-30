@@ -42,15 +42,14 @@ body {
 }
 
 .react-ul {
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    margin-top: 75px;
+    margin-left: 75px;
 }
 
 .react-link {
     list-style-type:none;
-    font-size: 1.25em;
-    margin-bottom: 20px;
+    font-size: 1.3em;
+    margin-bottom: 50px !important;
     font-weight:bold;
 }
 
@@ -102,7 +101,10 @@ body {
 .home-button {
     margin-left: 100px;
     margin-top: 75px;
-    
+}
+
+.react-home {
+    margin-top: 30px !important;
 }
 
 .home-button a {
@@ -120,12 +122,12 @@ body {
     background-color: rgb(202, 202, 202);
 }
 
-.go-back {
+/* .go-back {
     float: right;
     margin-top: -40px;
     margin-right: 10px;
     font-size: 1em;
-}
+} */
 
 .home-button-delete {
     margin: 0 auto;

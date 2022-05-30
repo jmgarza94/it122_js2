@@ -14,7 +14,7 @@
   </head>
   <body>
     <h1 class="home-header">REACT HOME PAGE</h1>
-    <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3>
+    <!-- <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3> -->
     <h2 class="animals">Animals:</h2>
 
     <div id="root"></div>
@@ -24,7 +24,7 @@
       const animals = <%- items %>;
 
       const animalDetail = (event) => {
-        window.location.href = "/detail_react?name=" + event.target.innerText.toLowerCase();
+        window.location.href = "/detail?name=" + event.target.innerText.toLowerCase();
         // need to use [.toLowerCase()] at the end of event target to keep the path lowercase
         console.log(event.target.innerText.toLowerCase());
         console.log(event.target.innerText);
@@ -45,5 +45,6 @@
           document.getElementById('root')
           );
     </script>
+    <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3>
   </body>
 </html>
