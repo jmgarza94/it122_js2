@@ -18,7 +18,7 @@ app.use("/api", cors()); // set Access-Control-Allow-Origin header for api route
 app.set("view engine", "ejs");
 
 // HOME ROUTE FOR BASIC APP
-app.get("/", (req, res, next) => {
+app.get("/home", (req, res, next) => {
   Animal.find({})
     .lean()
     .then((animals) => {
@@ -29,12 +29,12 @@ app.get("/", (req, res, next) => {
 });
 
 // HOME ROUTE FOR REACT
-app.get("/react", (req, res, next) => {
+app.get("/", (req, res, next) => {
   Animal.find({})
     .lean()
     .then((animals) => {
       // respond to browser only after db query completes
-      res.render("home_react", {items: JSON.stringify(animals)});
+      res.render("home_react", {animals: JSON.stringify(animals)});
     })
     .catch((err) => next(err));
 });
