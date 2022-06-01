@@ -18,10 +18,10 @@
     <h2 class="animals">Animals:</h2>
 
     <div id="root"></div>
-  
+
     <script type="text/babel">
 
-      const animals = <%- items %>;
+      const items = <%- animals %>;
 
       const animalDetail = (event) => {
         window.location.href = "/detail?name=" + event.target.innerText.toLowerCase();
@@ -30,8 +30,6 @@
         console.log(event.target.innerText);
       }
 
-      // ANIMAL LIST AND DETAILS AS TWO SEPARATE COMPONENTS
-
       const Animals = (props) => {
         const listItems = props.data.map((item) =>
         <li className="animal-li" key={item._id} id={item._id} onClick={props.clickHandler}>
@@ -39,12 +37,12 @@
         </li>);
         return <ul className="animal-list">{listItems}</ul>
       }
-          
+
+
           ReactDOM.render(
-          <div><Animals data={animals} clickHandler={animalDetail} /></div>,
+          <div><Animals data={items} clickHandler={animalDetail} /></div>,
           document.getElementById('root')
           );
     </script>
-    <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3>
   </body>
 </html>
