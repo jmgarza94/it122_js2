@@ -9,28 +9,17 @@
 
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <h1 class="home-header">REACT HOME PAGE</h1>
-    <!-- <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3> -->
-    <!-- <h2 class="animals">Animals:</h2> -->
 
     <div id="root"></div>
-  
+
     <script type="text/babel">
 
       const items = <%- animals %>;
       // console.log(items);
-
-      // const animalDetail = (event) => {
-      //   window.location.href = "/detail?name=" + event.target.innerText.toLowerCase();
-      //   // need to use [.toLowerCase()] at the end of event target to keep the path lowercase
-      //   console.log(event.target.innerText.toLowerCase());
-      //   console.log(event.target.innerText);
-      // }
-
 
       const Animals = (props) => {
         const listItems = props.data.map((item) =>
@@ -63,8 +52,6 @@
 
       // ANIMAL LIST AND DETAILS AS TWO SEPARATE COMPONENTS
 
-      
-
       // --------  UI START -------- //
 
       class App extends React.Component {
@@ -81,13 +68,6 @@
         this.onDelete = this.onDelete.bind(this);
       }
         
-
-        // showDetail = (event) => {
-        //     const foundItem = this.state.items.find((item) => {
-        //         return item.name === event.target.innerText;
-        //     });
-        //     this.setState({current_item: foundItem})
-        // }
 
         showDetail = (event) => {
             console.log("event.target.innerText");
@@ -121,7 +101,6 @@
                 .then(res => res.json())
                 .then((json) => {
                     console.log(json)
-                    // if this new item, add to list of items
                     if (json.updated === 0) {
                         new_item._id = json._id
                         let new_list = this.state.items;
@@ -164,10 +143,6 @@
 
       }
       // -------- UI END  ---------- //
-          // ReactDOM.render(
-          // <div> <Animals data={items} clickHandler={AnimalDetail} /> </div>,
-          // document.getElementById('root')
-          // );
       ReactDOM.render(<App />, document.getElementById('root'));
     </script>
     <h3 class="go-back home-button"><a href="/">Refresh Home</a></h3>
