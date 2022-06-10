@@ -98,6 +98,17 @@ body {
     font-size: 3em;
 }
 
+#details-form {
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+form > input {
+    /* padding-bottom: 5px; */
+    margin-bottom: 5px;
+}
+
+
 .home-button {
     margin-left: 100px;
     margin-top: 75px;

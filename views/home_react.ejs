@@ -15,22 +15,22 @@
   <body>
     <h1 class="home-header">REACT HOME PAGE</h1>
     <!-- <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3> -->
-    <h2 class="animals">Animals:</h2>
+    <!-- <h2 class="animals">Animals:</h2> -->
 
     <div id="root"></div>
   
     <script type="text/babel">
 
-      const animals = <%- items %>;
+      const items = <%- animals %>;
+      // console.log(items);
 
-      const animalDetail = (event) => {
-        window.location.href = "/detail?name=" + event.target.innerText.toLowerCase();
-        // need to use [.toLowerCase()] at the end of event target to keep the path lowercase
-        console.log(event.target.innerText.toLowerCase());
-        console.log(event.target.innerText);
-      }
+      // const animalDetail = (event) => {
+      //   window.location.href = "/detail?name=" + event.target.innerText.toLowerCase();
+      //   // need to use [.toLowerCase()] at the end of event target to keep the path lowercase
+      //   console.log(event.target.innerText.toLowerCase());
+      //   console.log(event.target.innerText);
+      // }
 
-      // ANIMAL LIST AND DETAILS AS TWO SEPARATE COMPONENTS
 
       const Animals = (props) => {
         const listItems = props.data.map((item) =>
@@ -39,12 +39,137 @@
         </li>);
         return <ul className="animal-list">{listItems}</ul>
       }
-          
-          ReactDOM.render(
-          <div><Animals data={animals} clickHandler={animalDetail} /></div>,
-          document.getElementById('root')
-          );
+
+      const AnimalDetail = (props) => {
+        return <div id="details-form">
+          <h3>Animal Details</h3>
+
+          <form>
+            Name: <input type="text" name="name" value={props.item.name || ""} onChange={props.onChange} />
+            <br/>
+            Type: <input type="text" name="type" value={props.item.type || ""} onChange={props.onChange} />
+            <br/>
+            Breed: <input type="text" name="breed" value={props.item.breed || ""} onChange={props.onChange} />
+            <br/>
+            Color: <input type="text" name="color" value={props.item.color || ""} onChange={props.onChange} />
+            <br/>
+            Age: <input type="text" name="age" value={props.item.age || ""} onChange={props.onChange} />
+          </form>
+            <button name="clear" onClick={props.onClear}>Clear Form</button>&nbsp;
+            <button name="save" onClick={props.onSave}>Save Item</button>&nbsp;
+            <button name="delete" onClick={props.onDelete}>Delete Item</button>
+          </div>
+      }
+
+      // ANIMAL LIST AND DETAILS AS TWO SEPARATE COMPONENTS
+
+      
+
+      // --------  UI START -------- //
+
+      class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+            items: <%- animals %>,
+            current_item: {} };
+
+        this.showDetail = this.showDetail.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onClear = this.onClear.bind(this);
+        this.onSave = this.onSave.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+      }
+        
+
+        // showDetail = (event) => {
+        //     const foundItem = this.state.items.find((item) => {
+        //         return item.name === event.target.innerText;
+        //     });
+        //     this.setState({current_item: foundItem})
+        // }
+
+        showDetail = (event) => {
+            console.log("event.target.innerText");
+            console.log(event.target.innerText);
+            const foundItem = this.state.items.find((item) => {
+                // nameLower = event.target.innerText;
+                console.log(event.target.innerText.toLowerCase());
+                return item.name === event.target.innerText.toLowerCase();
+            });
+            this.setState({current_item: foundItem})
+        }
+
+        onChange = (event) => {
+          let new_item = this.state.current_item;
+          new_item[event.target.name] = event.target.value;
+          this.setState({current_item: new_item})
+
+        }
+        onClear = () => {
+            this.setState({current_item: {}})
+        }
+
+        onSave = () => {
+            if (this.state.current_item == {}) return
+            let new_item = this.state.current_item;
+            fetch("/api/add/", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(new_item)
+            })
+                .then(res => res.json())
+                .then((json) => {
+                    console.log(json)
+                    // if this new item, add to list of items
+                    if (json.updated === 0) {
+                        new_item._id = json._id
+                        let new_list = this.state.items;
+                        new_list.push(new_item);
+                        this.setState({items: new_list});
+                    }
+                });
+        }
+
+        onDelete = () => {
+            console.log(this.state.current_item)
+            if (this.state.current_item == {}) return
+            let delete_id = this.state.current_item._id;
+            let url = "/api/delete/" + delete_id;
+            fetch(url)
+            .then(res => res.json())
+            .then((json) => {
+                if (json.deleted.deletedCount > 0) {
+                    let new_list = this.state.items.filter(item => {
+                        return item._id != delete_id;
+                    })
+                    this.setState({items: new_list, current_item: {}})
+                }
+             })
+        }
+
+        render() {
+        return (
+        <div> <h2 className="animals">Animals</h2>
+            <Animals data={this.state.items} clickHandler={this.showDetail} />
+            <AnimalDetail
+              item={this.state.current_item}
+              onChange={this.onChange}
+              onClear={this.onClear}
+              onSave={this.onSave}
+              onDelete={this.onDelete}
+              />
+        </div> );
+      }
+
+      }
+      // -------- UI END  ---------- //
+          // ReactDOM.render(
+          // <div> <Animals data={items} clickHandler={AnimalDetail} /> </div>,
+          // document.getElementById('root')
+          // );
+      ReactDOM.render(<App />, document.getElementById('root'));
     </script>
-    <h3 class="go-back home-button"><a href="/">Basic App Home</a></h3>
+    <h3 class="go-back home-button"><a href="/">Refresh Home</a></h3>
   </body>
 </html>
